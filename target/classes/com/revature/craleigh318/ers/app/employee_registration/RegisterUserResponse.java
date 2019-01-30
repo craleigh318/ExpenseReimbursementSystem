@@ -1,4 +1,4 @@
-package com.revature.craleigh318.expense_reimbursement_system.app.employee_registration;
+package com.revature.craleigh318.ers.app.employee_registration;
 
 class RegisterUserResponse {
 	

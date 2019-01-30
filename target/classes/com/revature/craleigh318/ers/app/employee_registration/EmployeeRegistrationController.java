@@ -1,4 +1,4 @@
-package com.revature.craleigh318.expense_reimbursement_system.app.employee_registration;
+package com.revature.craleigh318.ers.app.employee_registration;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.revature.craleigh318.expense_reimbursement_system.app.employee_registration.RegisterUserResponse;
-import com.revature.craleigh318.expense_reimbursement_system.dao.ErsDatabaseController;
+import com.revature.craleigh318.ers.app.employee_registration.RegisterUserResponse;
+import com.revature.craleigh318.ers.dao.ErsDatabaseController;
 
 public class EmployeeRegistrationController extends HttpServlet {
 	
