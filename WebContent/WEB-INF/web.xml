@@ -10,11 +10,11 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-    <servlet-name>Main</servlet-name>
-    <servlet-class>com.revature.craleigh318.expense_reimbursement_system.Main</servlet-class>
+    <servlet-name>EmployeeRegistrationController</servlet-name>
+    <servlet-class>com.revature.craleigh318.expense_reimbursement_system.app.employee_registration.EmployeeRegistrationController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Main</servlet-name>
+    <servlet-name>EmployeeRegistrationController</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 </web-app>
