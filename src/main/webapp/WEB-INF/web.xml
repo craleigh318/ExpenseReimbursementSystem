@@ -4,4 +4,21 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>EmployeeRegistrationController</servlet-name>
+  	<servlet-class>com.revature.craleigh318.ers.app.employee_registration.EmployeeRegistrationController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UserLogIn</servlet-name>
+  	<display-name>UserLogIn</display-name>
+  	<servlet-class>UserLogIn</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>EmployeeRegistrationController</servlet-name>
+  	<url-pattern>/EmployeeRegistrationController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserLogIn</servlet-name>
+  	<url-pattern>/UserLogIn</url-pattern>
+  </servlet-mapping>
 </web-app>
