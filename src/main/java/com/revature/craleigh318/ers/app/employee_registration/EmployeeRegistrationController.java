@@ -17,7 +17,6 @@ public class EmployeeRegistrationController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		super.doGet(req, resp);
 		RegisterUserResponse result = registerUser(req);
 		EmployeeRegistrationView.show(resp, result);
 	}
@@ -25,7 +24,7 @@ public class EmployeeRegistrationController extends HttpServlet {
 	private RegisterUserResponse registerUser(HttpServletRequest req) {
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
-		if ((username != null) && (password == null)) {
+		if ((username == null) && (password == null)) {
 			return new RegisterUserResponse(RegisterUserResponse.Code.NOT_SUBMITTED, null);
 		}
 		try {

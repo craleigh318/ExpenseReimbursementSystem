@@ -10,15 +10,14 @@
   </servlet>
   <servlet>
   	<servlet-name>UserLogIn</servlet-name>
-  	<display-name>UserLogIn</display-name>
   	<servlet-class>UserLogIn</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>EmployeeRegistrationController</servlet-name>
-  	<url-pattern>/EmployeeRegistrationController</url-pattern>
+  	<url-pattern>/EmployeeRegistration</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>UserLogIn</servlet-name>
-  	<url-pattern>/UserLogIn</url-pattern>
+  	<url-pattern>/</url-pattern>
   </servlet-mapping>
 </web-app>
