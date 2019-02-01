@@ -1,4 +1,4 @@
-package com.revature.craleigh318.ers.dao;
+package com.revature.craleigh318.ers.data;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.revature.craleigh318.ers.app.employee_registration.RegisterUserResponse;
-import com.revature.craleigh318.ers.dao.ErsDatabaseController;
+import com.revature.craleigh318.ers.data.ErsDao;
 
 public class EmployeeRegistrationController extends HttpServlet {
 	
@@ -28,7 +28,7 @@ public class EmployeeRegistrationController extends HttpServlet {
 			return new RegisterUserResponse(RegisterUserResponse.Code.NOT_SUBMITTED, null);
 		}
 		try {
-			ErsDatabaseController.registerUser(username, password);
+			ErsDao.registerUser(username, password);
 		} catch (SQLException | IOException e) {
 			return new RegisterUserResponse(RegisterUserResponse.Code.FAILED, null);
 		}
