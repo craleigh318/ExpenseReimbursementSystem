@@ -1,6 +1,5 @@
 package com.revature.craleigh318.ers.data;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -66,7 +65,7 @@ public class DataHandler implements AutoCloseable {
 	
 	private InputStream getInputStream() throws FileNotFoundException {
 		if (inputStream == null) {
-			inputStream = new FileInputStream(PROPERTIES_FILENAME);
+			inputStream = DataHandler.class.getResourceAsStream(PROPERTIES_FILENAME);
 		}
 		return inputStream;
 	}
