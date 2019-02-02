@@ -65,7 +65,7 @@ public class DataHandler implements AutoCloseable {
 	
 	private InputStream getInputStream() throws FileNotFoundException {
 		if (inputStream == null) {
-			inputStream = DataHandler.class.getResourceAsStream(PROPERTIES_FILENAME);
+			inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(PROPERTIES_FILENAME);
 		}
 		return inputStream;
 	}
