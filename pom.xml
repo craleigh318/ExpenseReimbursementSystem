@@ -23,7 +23,6 @@
     <dependency>
     	<groupId>com.oracle</groupId>
     	<artifactId>ojdbc8</artifactId>
-    	<scope>runtime</scope>
     	<version>12.2.0.1</version>
     </dependency>
   </dependencies>
