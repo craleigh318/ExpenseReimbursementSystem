@@ -42,9 +42,14 @@ public class DataHandler implements AutoCloseable {
 	
 	public Connection getConnection() throws SQLException, IOException {
 		if (connection == null) {
+			registerDriver();
 			connection = DriverManager.getConnection(getUrl(), getProperties());
 		}
 		return connection;
+	}
+	
+	private void registerDriver() throws SQLException {
+		DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
 	}
 	
 	private String getUrl() throws IOException {
