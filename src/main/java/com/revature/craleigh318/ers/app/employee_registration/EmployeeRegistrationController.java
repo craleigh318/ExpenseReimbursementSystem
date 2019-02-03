@@ -17,8 +17,12 @@ public class EmployeeRegistrationController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RegisterUserResponse result = registerUser(req);
-		EmployeeRegistrationView.show(resp, result);
+		serveResponse(req, resp);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		serveResponse(req, resp);
 	}
 	
 	private RegisterUserResponse registerUser(HttpServletRequest req) {
@@ -33,6 +37,11 @@ public class EmployeeRegistrationController extends HttpServlet {
 			return new RegisterUserResponse(RegisterUserResponse.Code.FAILED, null);
 		}
 		return new RegisterUserResponse(RegisterUserResponse.Code.SUCCEEDED, username);
+	}
+	
+	private void serveResponse(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		RegisterUserResponse result = registerUser(req);
+		EmployeeRegistrationView.show(resp, result);
 	}
 
 }
