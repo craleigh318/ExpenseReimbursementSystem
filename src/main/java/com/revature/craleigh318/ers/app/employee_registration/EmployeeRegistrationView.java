@@ -7,7 +7,7 @@ import javax.servlet.ServletResponse;
 
 class EmployeeRegistrationView {
 	
-	private static final String SEGMENT_1 = "<!DOCTYPE html><html><head><title>Expense Reimbursement System</title></head><body><h1>Register New Employee</h1><form><table><tr><td>Username:</td><td><input name=\"username\" type=\"text\" /></td></tr><tr><td>Temporary Password:</td><td><input name=\"password\" type=\"password\" /></td></tr></table><input type=\"submit\" value=\"Register\" /></form>";
+	private static final String SEGMENT_1 = "<!DOCTYPE html><html><head><title>Expense Reimbursement System</title></head><body><h1>Register New Employee</h1><form method=\"post\"><table><tr><td>Username:</td><td><input name=\"username\" type=\"text\" /></td></tr><tr><td>Temporary Password:</td><td><input name=\"password\" type=\"password\" /></td></tr></table><input type=\"submit\" value=\"Register\" /></form>";
 	private static final String SEGMENT_2 = "</body></html>";
 	private static final String SUCCESS_MSG = "%s registered successfully!";
 	private static final String FAILURE_MSG = "User registration failed.";
