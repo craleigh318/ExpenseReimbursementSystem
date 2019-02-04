@@ -1,5 +1,8 @@
 package com.revature.craleigh318.ers.app;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -7,7 +10,7 @@ import com.revature.craleigh318.ers.app.employee_registration.EmployeeRegistrati
 
 class ErsFrontControllerDispatcher {
 
-	static void dispatch(DispatchType type, HttpServletRequest req, HttpServletResponse resp) {
+	static void dispatch(DispatchType type, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		getSubcontroller(type).doRequest(req, resp);
 	}
 	
