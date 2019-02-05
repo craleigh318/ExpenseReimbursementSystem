@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.revature.craleigh318.ers.app.ErsFrontControllerDispatcher;
-import com.revature.craleigh318.ers.app.IErsViewController;
 import com.revature.craleigh318.ers.data.ErsDao;
 import com.revature.craleigh318.ers.utils.DispatchType;
 import com.revature.craleigh318.ers.utils.FormResponse;

@@ -7,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.revature.craleigh318.ers.app.IErsViewController;
 import com.revature.craleigh318.ers.data.ErsDao;
 import com.revature.craleigh318.ers.utils.FormResponse;
 import com.revature.craleigh318.ers.view.EmployeeRegistrationView;
