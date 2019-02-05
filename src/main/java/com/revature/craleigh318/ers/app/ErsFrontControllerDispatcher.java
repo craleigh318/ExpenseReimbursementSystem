@@ -11,9 +11,13 @@ import com.revature.craleigh318.ers.app.employee_registration.EmployeeRegistrati
 
 public class ErsFrontControllerDispatcher {
 	
-	public static final String DISPATCH_TYPE_ATTRIBUTE_NAME = "dispatch-type";
+	private static final String DISPATCH_TYPE_ATTRIBUTE_NAME = "dispatch-type";
 	private static final DispatchType DEFAULT_DISPATCH_TYPE = DispatchType.EMPLOYEE_REGISTRATION;
 
+	public static void setRequestDispatchType(HttpServletRequest req, DispatchType newType) {
+		req.getSession().setAttribute(DISPATCH_TYPE_ATTRIBUTE_NAME, newType);
+	}
+	
 	static void dispatch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		DispatchType dispType = getRequestDispatchType(req);
 		getSubcontroller(dispType).doRequest(req, resp);

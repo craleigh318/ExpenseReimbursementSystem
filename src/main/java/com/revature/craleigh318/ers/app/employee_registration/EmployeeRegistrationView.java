@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletResponse;
 
+import com.revature.craleigh318.ers.app.ErsView;
 import com.revature.craleigh318.ers.app.FormResponse;
 
 class EmployeeRegistrationView {
@@ -14,10 +15,8 @@ class EmployeeRegistrationView {
 	private static final String FAILURE_MSG = "User registration failed.";
 	
 	static void show(ServletResponse servResp, FormResponse ruResp) throws IOException {
-		servResp.setContentType("text/html");
-		PrintWriter writer = servResp.getWriter();
 		String html = createHtml(ruResp);
-		writer.print(html);
+		ErsView.writeHtml(servResp, html);
 	}
 	
 	private static String createHtml(FormResponse resp) {
@@ -32,9 +31,9 @@ class EmployeeRegistrationView {
 		case FAILED:
 			message = FAILURE_MSG;
 			break;
-			default:
-				message = "";
-				break;
+		default:
+			message = "";
+			break;
 		}
 		html = String.format(html, message);
 		return html;
