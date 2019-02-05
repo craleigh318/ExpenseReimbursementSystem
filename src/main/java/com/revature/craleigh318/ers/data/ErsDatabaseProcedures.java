@@ -22,6 +22,14 @@ class ErsDatabaseProcedures {
 		return stmt;
 	}
 	
+	static CallableStatement compareUserPassword(int userId, String enteredPassword) throws SQLException, IOException {
+		CallableStatement stmt = getConnection().prepareCall("{CALL PROC_COMPARE_USER_PASSWORD(?, ?, ?)}");
+		stmt.setInt(1, userId);
+		stmt.setString(2, enteredPassword);
+		stmt.registerOutParameter(3, Types.BOOLEAN);
+		return stmt;
+	}
+	
 	static CallableStatement updateUserPassword(int userId, String newPassword) throws SQLException, IOException {
 		CallableStatement stmt = getConnection().prepareCall("{CALL PROC_UPDATE_USER_PASSWORD(?, ?)}");
 		stmt.setInt(1, userId);
