@@ -33,12 +33,10 @@ class EmployeeRegistrationView {
 			message = FAILURE_MSG;
 			break;
 			default:
-				message = null;
+				message = "";
 				break;
 		}
-		if (message != null) {
-			html = String.format(html, message);
-		}
+		html = String.format(html, message);
 		return html;
 	}
 	
