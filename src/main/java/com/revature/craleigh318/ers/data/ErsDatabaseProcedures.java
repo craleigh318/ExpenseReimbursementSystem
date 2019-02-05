@@ -28,7 +28,7 @@ class ErsDatabaseProcedures {
 		CallableStatement stmt = getConnection().prepareCall("{CALL PROC_COMPARE_USER_PASSWORD(?, ?, ?)}");
 		stmt.setInt(1, userId);
 		stmt.setString(2, enteredPassword);
-		stmt.registerOutParameter(3, OracleTypes.BOOLEAN);
+		stmt.registerOutParameter(3, OracleTypes.INTEGER);
 		return stmt;
 	}
 	

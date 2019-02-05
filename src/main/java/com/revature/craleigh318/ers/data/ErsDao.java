@@ -19,7 +19,8 @@ public class ErsDao {
 	public static boolean compareUserPassword(int userId, String enteredPassword) throws SQLException, IOException {
 		CallableStatement stmt = ErsDatabaseProcedures.compareUserPassword(userId, enteredPassword);
 		stmt.execute();
-		return stmt.getBoolean(3);
+		int intComparison = stmt.getInt(3);
+		return (intComparison != 0);
 	}
 	
 	private ErsDao() { }
