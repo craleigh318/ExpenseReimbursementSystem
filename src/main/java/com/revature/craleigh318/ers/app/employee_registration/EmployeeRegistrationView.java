@@ -1,7 +1,6 @@
 package com.revature.craleigh318.ers.app.employee_registration;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletResponse;
 
