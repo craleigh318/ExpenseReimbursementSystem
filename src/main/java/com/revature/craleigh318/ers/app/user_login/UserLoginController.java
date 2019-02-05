@@ -4,10 +4,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.revature.craleigh318.ers.app.DispatchType;
+import com.revature.craleigh318.ers.app.ErsFrontControllerDispatcher;
 import com.revature.craleigh318.ers.app.FormResponse;
 import com.revature.craleigh318.ers.app.IErsViewController;
 import com.revature.craleigh318.ers.app.employee_registration.EmployeeRegistrationController;
@@ -23,7 +24,13 @@ public class UserLoginController implements IErsViewController {
 	
 	@Override
 	public void doRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		FormResponse result = logInUser(req);
+		FormResponse.Code resultCode = result.getCode();
+		if (resultCode == FormResponse.Code.SUCCEEDED) {
+			toUserScreen(req, resp);
+		} else {
+			UserLoginView.show(resp, resultCode);
+		}
 	}
 	
 	private FormResponse logInUser(HttpServletRequest req) {
@@ -47,5 +54,10 @@ public class UserLoginController implements IErsViewController {
 			}
 		}
 		return new FormResponse(responseCode, username);
+	}
+	
+	private void toUserScreen(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		ErsFrontControllerDispatcher.setRequestDispatchType(req, DispatchType.EMPLOYEE_REGISTRATION);
+		EmployeeRegistrationController.getInstance().doRequest(req, resp);
 	}
 }
