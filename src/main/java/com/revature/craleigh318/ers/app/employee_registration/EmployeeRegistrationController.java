@@ -26,8 +26,8 @@ public class EmployeeRegistrationController implements IErsViewController {
 	}
 	
 	private FormResponse registerUser(HttpServletRequest req) {
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
+		String username = req.getParameter("registrationUsername");
+		String password = req.getParameter("registrationPassword");
 		if ((username == null) && (password == null)) {
 			return new FormResponse(FormResponse.Code.NOT_SUBMITTED, null);
 		}

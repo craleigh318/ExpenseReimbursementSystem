@@ -11,7 +11,6 @@ import com.revature.craleigh318.ers.app.DispatchType;
 import com.revature.craleigh318.ers.app.ErsFrontControllerDispatcher;
 import com.revature.craleigh318.ers.app.FormResponse;
 import com.revature.craleigh318.ers.app.IErsViewController;
-import com.revature.craleigh318.ers.app.employee_registration.EmployeeRegistrationController;
 import com.revature.craleigh318.ers.data.ErsDao;
 
 public class UserLoginController implements IErsViewController {
@@ -35,8 +34,8 @@ public class UserLoginController implements IErsViewController {
 	
 	private FormResponse logInUser(HttpServletRequest req) {
 		FormResponse.Code responseCode;
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
+		String username = req.getParameter("loginUsername");
+		String password = req.getParameter("loginPassword");
 		if ((username == null) && (password == null)) {
 			responseCode = FormResponse.Code.NOT_SUBMITTED;
 		} else {
@@ -58,6 +57,6 @@ public class UserLoginController implements IErsViewController {
 	
 	private void toUserScreen(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ErsFrontControllerDispatcher.setRequestDispatchType(req, DispatchType.EMPLOYEE_REGISTRATION);
-		EmployeeRegistrationController.getInstance().doRequest(req, resp);
+		req.getRequestDispatcher("/").forward(req, resp);
 	}
 }

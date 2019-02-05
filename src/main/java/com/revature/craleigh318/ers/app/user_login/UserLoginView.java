@@ -9,7 +9,7 @@ import com.revature.craleigh318.ers.app.FormResponse;
 
 class UserLoginView {
 
-	private static final String BASE_HTML = "<!DOCTYPE html><html><head><title>Expense Reimbursement System</title></head><body><h1>Expense Reimbursement System</h1><h2>Log In</h2><form method=\"post\"><table><tr><td>Username:</td><td><input name=\"username\" type=\"text\" /></td></tr><tr><td>Password:</td><td><input name=\"password\" type=\"password\" /></td></tr></table><input type=\"submit\" value=\"Log In\" /></form><p>Not registered? Ask your manager to add you.</p>%s</body></html>";
+	private static final String BASE_HTML = "<!DOCTYPE html><html><head><title>Expense Reimbursement System</title></head><body><h1>Expense Reimbursement System</h1><h2>Log In</h2><form method=\"post\"><table><tr><td>Username:</td><td><input name=\"loginUsername\" type=\"text\" /></td></tr><tr><td>Password:</td><td><input name=\"loginPassword\" type=\"password\" /></td></tr></table><input type=\"submit\" value=\"Log In\" /></form><p>Not registered? Ask your manager to add you.</p>%s</body></html>";
 	private static final String FAILURE_MSG = "<p>Incorrect username or password.</p>";
 	
 	static void show(ServletResponse servResp, FormResponse.Code responseCode) throws IOException {
