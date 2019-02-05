@@ -9,8 +9,7 @@ import com.revature.craleigh318.ers.app.FormResponse;
 
 class EmployeeRegistrationView {
 	
-	private static final String SEGMENT_1 = "<!DOCTYPE html><html><head><title>Expense Reimbursement System</title></head><body><h1>Register New Employee</h1><form method=\"post\"><table><tr><td>Username:</td><td><input name=\"username\" type=\"text\" /></td></tr><tr><td>Temporary Password:</td><td><input name=\"password\" type=\"password\" /></td></tr></table><input type=\"submit\" value=\"Register\" /></form>";
-	private static final String SEGMENT_2 = "</body></html>";
+	private static final String BASE_HTML = "<!DOCTYPE html><html><head><title>Expense Reimbursement System</title></head><body><h1>Register New Employee</h1><form method=\"post\"><table><tr><td>Username:</td><td><input name=\"username\" type=\"text\" /></td></tr><tr><td>Temporary Password:</td><td><input name=\"password\" type=\"password\" /></td></tr></table><input type=\"submit\" value=\"Register\" /></form>%s</body></html>";
 	private static final String SUCCESS_MSG = "%s registered successfully!";
 	private static final String FAILURE_MSG = "User registration failed.";
 	
@@ -22,7 +21,7 @@ class EmployeeRegistrationView {
 	}
 	
 	private static String createHtml(FormResponse resp) {
-		StringBuilder sb = new StringBuilder(SEGMENT_1);
+		String html = BASE_HTML;
 		String message;
 		FormResponse.Code responseCode = resp.getCode();
 		switch (responseCode) {
@@ -38,10 +37,9 @@ class EmployeeRegistrationView {
 				break;
 		}
 		if (message != null) {
-			sb.append(message);
+			html = String.format(html, message);
 		}
-		sb.append(SEGMENT_2);
-		return sb.toString();
+		return html;
 	}
 	
 	private EmployeeRegistrationView() { }
