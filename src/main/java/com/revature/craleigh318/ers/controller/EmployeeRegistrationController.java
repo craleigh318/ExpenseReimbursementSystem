@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.revature.craleigh318.ers.data.ErsDao;
 import com.revature.craleigh318.ers.utils.FormResponse;
 import com.revature.craleigh318.ers.view.EmployeeRegistrationView;
+import com.revature.craleigh318.ers.view.ErsView;
 
 public class EmployeeRegistrationController implements IErsViewController {
 	
@@ -22,7 +23,8 @@ public class EmployeeRegistrationController implements IErsViewController {
 	@Override
 	public void doRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		FormResponse result = registerUser(req);
-		EmployeeRegistrationView.show(resp, result);
+		String html = EmployeeRegistrationView.createHtml(result);
+		ErsView.writeHtmlWithOuter(resp, html);
 	}
 	
 	private FormResponse registerUser(HttpServletRequest req) {

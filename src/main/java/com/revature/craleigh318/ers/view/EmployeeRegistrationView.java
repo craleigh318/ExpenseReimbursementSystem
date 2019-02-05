@@ -1,23 +1,14 @@
 package com.revature.craleigh318.ers.view;
 
-import java.io.IOException;
-
-import javax.servlet.ServletResponse;
-
 import com.revature.craleigh318.ers.utils.FormResponse;
 
 public class EmployeeRegistrationView {
 	
-	private static final String BASE_HTML = "<!DOCTYPE html><html><head><title>Expense Reimbursement System</title></head><body><h1>Register New Employee</h1><form method=\"post\"><table><tr><td>Username:</td><td><input name=\"registrationUsername\" type=\"text\" /></td></tr><tr><td>Temporary Password:</td><td><input name=\"registrationPassword\" type=\"password\" /></td></tr></table><input type=\"submit\" value=\"Register\" /></form>%s</body></html>";
+	private static final String BASE_HTML = "<h1>Register New Employee</h1><form method=\"post\"><table><tr><td>Username:</td><td><input name=\"registrationUsername\" type=\"text\" /></td></tr><tr><td>Temporary Password:</td><td><input name=\"registrationPassword\" type=\"password\" /></td></tr></table><input type=\"submit\" value=\"Register\" /></form>%s";
 	private static final String SUCCESS_MSG = "<p>%s registered successfully!</p>";
 	private static final String FAILURE_MSG = "<p>User registration failed.</p>";
 	
-	public static void show(ServletResponse servResp, FormResponse ruResp) throws IOException {
-		String html = createHtml(ruResp);
-		ErsView.writeHtml(servResp, html);
-	}
-	
-	private static String createHtml(FormResponse resp) {
+	public static String createHtml(FormResponse resp) {
 		String html = BASE_HTML;
 		String message;
 		FormResponse.Code responseCode = resp.getCode();

@@ -10,15 +10,15 @@ import javax.servlet.http.HttpSession;
 import com.revature.craleigh318.ers.controller.EmployeeRegistrationController;
 import com.revature.craleigh318.ers.controller.IErsViewController;
 import com.revature.craleigh318.ers.controller.UserLoginController;
+import com.revature.craleigh318.ers.utils.AttributeNames;
 import com.revature.craleigh318.ers.utils.DispatchType;
 
 public class ErsFrontControllerDispatcher {
 	
-	private static final String DISPATCH_TYPE_ATTRIBUTE_NAME = "dispatch-type";
 	private static final DispatchType DEFAULT_DISPATCH_TYPE = DispatchType.USER_LOGIN;
 
 	public static void setRequestDispatchType(HttpServletRequest req, DispatchType newType) {
-		req.getSession().setAttribute(DISPATCH_TYPE_ATTRIBUTE_NAME, newType);
+		req.getSession().setAttribute(AttributeNames.DISPATCH_TYPE, newType);
 	}
 	
 	static void dispatch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,7 +28,7 @@ public class ErsFrontControllerDispatcher {
 	
 	private static DispatchType getRequestDispatchType(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		Object objDispatchType = session.getAttribute(DISPATCH_TYPE_ATTRIBUTE_NAME);
+		Object objDispatchType = session.getAttribute(AttributeNames.DISPATCH_TYPE);
 		if ((objDispatchType != null) && (objDispatchType instanceof DispatchType)) {
 			return (DispatchType) objDispatchType;
 		}

@@ -9,6 +9,11 @@ public class ErsView {
 	
 	private static final String OUTER_HTML = "<!DOCTYPE html><html><head><title>Expense Reimbursement System</title></head><body>%s</body></html>";
 
+	public static void writeHtmlWithOuter(ServletResponse response, String innerHtml) throws IOException {
+		String fullHtml = addOuterHtml(innerHtml);
+		writeHtml(response, fullHtml);
+	}
+	
 	public static String addOuterHtml(String innerHtml) {
 		return String.format(OUTER_HTML, innerHtml);
 	}

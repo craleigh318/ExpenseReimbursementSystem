@@ -1,22 +1,14 @@
 package com.revature.craleigh318.ers.view;
 
-import java.io.IOException;
-
-import javax.servlet.ServletResponse;
-
+import com.revature.craleigh318.ers.utils.AttributeNames;
 import com.revature.craleigh318.ers.utils.FormResponse;
 
 public class UserLoginView {
 
-	private static final String BASE_HTML = "<!DOCTYPE html><html><head><title>Expense Reimbursement System</title></head><body><h1>Expense Reimbursement System</h1><h2>Log In</h2><form method=\"post\"><table><tr><td>Username:</td><td><input name=\"loginUsername\" type=\"text\" /></td></tr><tr><td>Password:</td><td><input name=\"loginPassword\" type=\"password\" /></td></tr></table><input type=\"submit\" value=\"Log In\" /></form><p>Not registered? Ask your manager to add you.</p>%s</body></html>";
+	private static final String BASE_HTML = "<h1>Expense Reimbursement System</h1><h2>Log In</h2><form method=\"post\"><table><tr><td>Username:</td><td><input name=\""+AttributeNames.LOGIN_USERNAME+"\" type=\"text\" /></td></tr><tr><td>Password:</td><td><input name=\""+AttributeNames.LOGIN_PASSWORD+"\" type=\"password\" /></td></tr></table><input type=\"submit\" value=\"Log In\" /></form><p>Not registered? Ask your manager to add you.</p>%s";
 	private static final String FAILURE_MSG = "<p>Incorrect username or password.</p>";
 	
-	public static void show(ServletResponse servResp, FormResponse.Code responseCode) throws IOException {
-		String html = createHtml(responseCode);
-		ErsView.writeHtml(servResp, html);
-	}
-	
-	private static String createHtml(FormResponse.Code responseCode) {
+	public static String createHtml(FormResponse.Code responseCode) {
 		String html = BASE_HTML;
 		String message;
 		switch (responseCode) {
