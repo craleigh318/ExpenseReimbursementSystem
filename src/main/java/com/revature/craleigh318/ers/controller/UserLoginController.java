@@ -1,4 +1,4 @@
-package com.revature.craleigh318.ers.app.controller;
+package com.revature.craleigh318.ers.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;

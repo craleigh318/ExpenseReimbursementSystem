@@ -36,5 +36,5 @@ public class DashboardView {
 		return html;
 	}
 	
-	private EmployeeRegistrationView() { }
+	private DashboardView() { }
 }

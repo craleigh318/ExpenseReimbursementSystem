@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.revature.craleigh318.ers.app.controller.EmployeeRegistrationController;
-import com.revature.craleigh318.ers.app.controller.UserLoginController;
+import com.revature.craleigh318.ers.controller.EmployeeRegistrationController;
+import com.revature.craleigh318.ers.controller.UserLoginController;
 import com.revature.craleigh318.ers.utils.DispatchType;
 
 public class ErsFrontControllerDispatcher {
