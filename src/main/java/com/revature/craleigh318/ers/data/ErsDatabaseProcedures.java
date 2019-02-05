@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import oracle.jdbc.OracleTypes;
+
 class ErsDatabaseProcedures {
 	
 	static CallableStatement insertEmployee(String username, String password) throws SQLException, IOException {
@@ -18,7 +20,7 @@ class ErsDatabaseProcedures {
 	static CallableStatement selectUserId(String username) throws SQLException, IOException {
 		CallableStatement stmt = getConnection().prepareCall("{CALL PROC_SELECT_USER_ID(?, ?)}");
 		stmt.setString(1, username);
-		stmt.registerOutParameter(2, Types.INTEGER);
+		stmt.registerOutParameter(2, OracleTypes.INTEGER);
 		return stmt;
 	}
 	
@@ -26,7 +28,7 @@ class ErsDatabaseProcedures {
 		CallableStatement stmt = getConnection().prepareCall("{CALL PROC_COMPARE_USER_PASSWORD(?, ?, ?)}");
 		stmt.setInt(1, userId);
 		stmt.setString(2, enteredPassword);
-		stmt.registerOutParameter(3, Types.BOOLEAN);
+		stmt.registerOutParameter(3, OracleTypes.BOOLEAN);
 		return stmt;
 	}
 	
