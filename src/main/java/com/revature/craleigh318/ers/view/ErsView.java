@@ -1,4 +1,4 @@
-package com.revature.craleigh318.ers.app;
+package com.revature.craleigh318.ers.view;
 
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -1,4 +1,4 @@
-package com.revature.craleigh318.ers.app.employee_registration;
+package com.revature.craleigh318.ers.app.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -7,9 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.revature.craleigh318.ers.app.FormResponse;
 import com.revature.craleigh318.ers.app.IErsViewController;
 import com.revature.craleigh318.ers.data.ErsDao;
+import com.revature.craleigh318.ers.utils.FormResponse;
+import com.revature.craleigh318.ers.view.EmployeeRegistrationView;
 
 public class EmployeeRegistrationController implements IErsViewController {
 	
