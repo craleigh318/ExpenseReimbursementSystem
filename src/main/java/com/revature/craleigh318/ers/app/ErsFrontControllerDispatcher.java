@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.revature.craleigh318.ers.app.employee_registration.EmployeeRegistrationController;
+import com.revature.craleigh318.ers.app.user_login.UserLoginController;
 
 public class ErsFrontControllerDispatcher {
 	
 	private static final String DISPATCH_TYPE_ATTRIBUTE_NAME = "dispatch-type";
-	private static final DispatchType DEFAULT_DISPATCH_TYPE = DispatchType.EMPLOYEE_REGISTRATION;
+	private static final DispatchType DEFAULT_DISPATCH_TYPE = DispatchType.USER_LOGIN;
 
 	public static void setRequestDispatchType(HttpServletRequest req, DispatchType newType) {
 		req.getSession().setAttribute(DISPATCH_TYPE_ATTRIBUTE_NAME, newType);
@@ -37,7 +38,7 @@ public class ErsFrontControllerDispatcher {
 		case EMPLOYEE_REGISTRATION:
 			return EmployeeRegistrationController.getInstance();
 		default:
-			return EmployeeRegistrationController.getInstance();
+			return UserLoginController.getInstance();
 		}
 	}
 }
