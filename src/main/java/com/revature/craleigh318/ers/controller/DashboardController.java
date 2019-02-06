@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.revature.craleigh318.ers.view.DashboardView;
+import com.revature.craleigh318.ers.view.ErsView;
 
 public class DashboardController implements IErsViewController {
 
@@ -18,7 +19,8 @@ public class DashboardController implements IErsViewController {
 	
 	@Override
 	public void doRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		managerDashboard(req, resp);
+		String html = managerDashboard(req, resp);
+		ErsView.writeHtmlWithOuter(resp, html);
 	}
 	
 	private static String employeeDashboard(HttpServletRequest req, HttpServletResponse resp) {
