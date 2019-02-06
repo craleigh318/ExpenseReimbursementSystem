@@ -34,7 +34,14 @@ public class ErsDao {
 		CallableStatement stmt = ErsDatabaseProcedures.selectAllReimbursementRequests();
 		stmt.execute();
 		ResultSet rs = (ResultSet) stmt.getObject(1);
-		return getMapForAllReimbursementRequests(rs);
+		return getMapForAllReimbursementRequests(rs, -1);
+	}
+	
+	public static Map<Integer, ReimbursementRequest> getReimbursementRequestsForUser(int userId) throws SQLException, IOException {
+		CallableStatement stmt = ErsDatabaseProcedures.selectUsersReimbursementRequests(userId);
+		stmt.execute();
+		ResultSet rs = (ResultSet) stmt.getObject(1);
+		return getMapForAllReimbursementRequests(rs, userId);
 	}
 	
 	public static boolean userIsManager(int userId) throws SQLException, IOException {
@@ -44,15 +51,21 @@ public class ErsDao {
 		return (intComparison != 0);
 	}
 	
-	private static Map<Integer, ReimbursementRequest> getMapForAllReimbursementRequests(ResultSet resultSet) throws SQLException {
+	private static Map<Integer, ReimbursementRequest> getMapForAllReimbursementRequests(ResultSet resultSet, int existingUserId) throws SQLException {
 		TreeMap<Integer, ReimbursementRequest> map = new TreeMap<>();
 		while (resultSet.next()) {
-			Integer requestId = resultSet.getInt(1);
-			int userId = resultSet.getInt(2);
-			BigDecimal amount = resultSet.getBigDecimal(3);
-			Date requestDate = resultSet.getDate(4);
-			String description = resultSet.getString(5);
-			Object objApproved = resultSet.getObject(6);
+			int i = 1;
+			Integer requestId = resultSet.getInt(i++);
+			int userId;
+			if (existingUserId < 0) {
+				userId = resultSet.getInt(i++);
+			} else {
+				userId = existingUserId;
+			}
+			BigDecimal amount = resultSet.getBigDecimal(i++);
+			Date requestDate = resultSet.getDate(i++);
+			String description = resultSet.getString(i++);
+			Object objApproved = resultSet.getObject(i++);
 			Boolean approved = integerObjectToBoolean(objApproved);
 			ReimbursementRequest reimbursementRequest = new ReimbursementRequest(userId, amount, requestDate, description, approved);
 			map.put(requestId, reimbursementRequest);

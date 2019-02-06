@@ -44,6 +44,13 @@ class ErsDatabaseProcedures {
 		return stmt;
 	}
 	
+	static CallableStatement selectUsersReimbursementRequests(int userId) throws SQLException, IOException {
+		CallableStatement stmt = getConnection().prepareCall("{CALL PROC_SELECT_USERS_REQUESTS(?, ?)}");
+		stmt.setInt(1, userId);
+		stmt.registerOutParameter(2, OracleTypes.CURSOR);
+		return stmt;
+	}
+	
 	static CallableStatement updateUserPassword(int userId, String newPassword) throws SQLException, IOException {
 		CallableStatement stmt = getConnection().prepareCall("{CALL PROC_UPDATE_USER_PASSWORD(?, ?)}");
 		stmt.setInt(1, userId);
