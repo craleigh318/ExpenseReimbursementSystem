@@ -11,8 +11,6 @@ import java.util.TreeMap;
 
 import com.revature.craleigh318.ers.model.ReimbursementRequest;
 
-import oracle.jdbc.OracleTypes;
-
 public class ErsDao {
 
 	public static void registerUser(String username, String temporaryPassword) throws SQLException, IOException {

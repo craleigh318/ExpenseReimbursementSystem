@@ -7,11 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.revature.craleigh318.ers.controller.DashboardController;
 import com.revature.craleigh318.ers.controller.EmployeeRegistrationController;
 import com.revature.craleigh318.ers.controller.IErsViewController;
 import com.revature.craleigh318.ers.controller.UserLoginController;
 import com.revature.craleigh318.ers.utils.AttributeNames;
 import com.revature.craleigh318.ers.utils.DispatchType;
+import com.revature.craleigh318.ers.view.ErsView;
 
 public class ErsFrontControllerDispatcher {
 	
@@ -37,8 +39,8 @@ public class ErsFrontControllerDispatcher {
 	
 	private static IErsViewController getSubcontroller(DispatchType type) {
 		switch (type) {
-		case EMPLOYEE_REGISTRATION:
-			return EmployeeRegistrationController.getInstance();
+		case USER_DASHBOARD:
+			return DashboardController.getInstance();
 		default:
 			return UserLoginController.getInstance();
 		}

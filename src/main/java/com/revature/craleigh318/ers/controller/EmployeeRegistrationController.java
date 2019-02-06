@@ -11,9 +11,8 @@ import com.revature.craleigh318.ers.data.ErsDao;
 import com.revature.craleigh318.ers.utils.AttributeNames;
 import com.revature.craleigh318.ers.utils.FormResponse;
 import com.revature.craleigh318.ers.view.EmployeeRegistrationView;
-import com.revature.craleigh318.ers.view.ErsView;
 
-public class EmployeeRegistrationController implements IErsViewController {
+public class EmployeeRegistrationController {
 	
 	private static EmployeeRegistrationController instance = new EmployeeRegistrationController();
 
@@ -21,11 +20,9 @@ public class EmployeeRegistrationController implements IErsViewController {
 		return instance;
 	}
 	
-	@Override
-	public void doRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public String htmlFromRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		FormResponse result = registerUser(req);
-		String html = EmployeeRegistrationView.createHtml(result);
-		ErsView.writeHtmlWithOuter(resp, html);
+		return EmployeeRegistrationView.createHtml(result);
 	}
 	
 	private FormResponse registerUser(HttpServletRequest req) {

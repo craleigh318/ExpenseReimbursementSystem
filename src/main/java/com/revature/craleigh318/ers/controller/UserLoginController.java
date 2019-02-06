@@ -61,7 +61,9 @@ public class UserLoginController implements IErsViewController {
 	}
 	
 	private void toUserScreen(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ErsFrontControllerDispatcher.setRequestDispatchType(req, DispatchType.EMPLOYEE_REGISTRATION);
+		ErsFrontControllerDispatcher.setRequestDispatchType(req, DispatchType.USER_DASHBOARD);
 		req.getRequestDispatcher("/").forward(req, resp);
 	}
+	
+	private UserLoginController() { }
 }

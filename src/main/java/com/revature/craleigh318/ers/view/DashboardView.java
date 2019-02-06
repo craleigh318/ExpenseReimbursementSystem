@@ -11,6 +11,14 @@ public class DashboardView {
 	private static final String SUCCESS_MSG = "<p>%s registered successfully!</p>";
 	private static final String FAILURE_MSG = "<p>User registration failed.</p>";
 	
+	public static String employeeDashboard() {
+		return "employee dashboard";
+	}
+	
+	public static String managerDashboard(String reimbursementRequestsHtml, String employeeRegistrationHtml) {
+		return "<h1>Manager Dashboard</h1><h2>All Requests</h2>%s<h2>Register New Employee</h2>%s";
+	}
+	
 	public static void show(ServletResponse servResp, FormResponse ruResp) throws IOException {
 		String html = createHtml(ruResp);
 		ErsView.writeHtml(servResp, html);
