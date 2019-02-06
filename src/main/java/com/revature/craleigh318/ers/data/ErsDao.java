@@ -37,6 +37,13 @@ public class ErsDao {
 		return getMapForAllReimbursementRequests(rs);
 	}
 	
+	public static boolean userIsManager(int userId) throws SQLException, IOException {
+		CallableStatement stmt = ErsDatabaseProcedures.userIsManager(userId);
+		stmt.execute();
+		int intComparison = stmt.getInt(2);
+		return (intComparison != 0);
+	}
+	
 	private static Map<Integer, ReimbursementRequest> getMapForAllReimbursementRequests(ResultSet resultSet) throws SQLException {
 		TreeMap<Integer, ReimbursementRequest> map = new TreeMap<>();
 		while (resultSet.next()) {

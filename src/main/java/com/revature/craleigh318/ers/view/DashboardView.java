@@ -10,11 +10,11 @@ public class DashboardView {
 	private static final String BASE_HTML = "<!DOCTYPE html><html><head><title>Expense Reimbursement System</title></head><body><h1>Register New Employee</h1><form method=\"post\"><table><tr><td>Username:</td><td><input name=\"registrationUsername\" type=\"text\" /></td></tr><tr><td>Temporary Password:</td><td><input name=\"registrationPassword\" type=\"password\" /></td></tr></table><input type=\"submit\" value=\"Register\" /></form>%s</body></html>";
 	private static final String SUCCESS_MSG = "<p>%s registered successfully!</p>";
 	private static final String FAILURE_MSG = "<p>User registration failed.</p>";
-	private static final String EMPLOYEE_DASHBOARD = "employee dashboard";
+	private static final String EMPLOYEE_DASHBOARD = "<h1>Employee Dashboard</h1><h2>My Requests</h2>%s";
 	private static final String MANAGER_DASHBOARD = "<h1>Manager Dashboard</h1><h2>All Requests</h2>%s<h2>Register New Employee</h2>%s";
 	
 	public static String employeeDashboard() {
-		return EMPLOYEE_DASHBOARD;
+		return String.format(EMPLOYEE_DASHBOARD, "");
 	}
 	
 	public static String managerDashboard(String reimbursementRequestsHtml, String employeeRegistrationHtml) {

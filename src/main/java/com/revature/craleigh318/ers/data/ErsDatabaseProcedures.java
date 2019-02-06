@@ -31,6 +31,13 @@ class ErsDatabaseProcedures {
 		return stmt;
 	}
 	
+	static CallableStatement userIsManager(int userId) throws SQLException, IOException {
+		CallableStatement stmt = getConnection().prepareCall("{CALL PROC_IS_MANAGER(?, ?)}");
+		stmt.setInt(1, userId);
+		stmt.registerOutParameter(2, OracleTypes.NUMBER);
+		return stmt;
+	}
+	
 	static CallableStatement selectAllReimbursementRequests() throws SQLException, IOException {
 		CallableStatement stmt = getConnection().prepareCall("{CALL PROC_SELECT_ALL_REQUESTS(?)}");
 		stmt.registerOutParameter(1, OracleTypes.CURSOR);
