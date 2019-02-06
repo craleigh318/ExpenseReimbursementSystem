@@ -8,6 +8,9 @@ public class AttributeNames {
 	public static final String LOGIN_PASSWORD = "loginPassword";
 	public static final String RGSTR_USERNAME = "registrationUsername";
 	public static final String RGSTR_PASSWORD = "registrationPassword";
+	public static final String NEW_AMOUNT = "newRequestAmount";
+	public static final String NEW_DATE = "newRequestDate";
+	public static final String NEW_DESCRIPTION = "newRequestDate";
 
 	private AttributeNames() { }
 }
