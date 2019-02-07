@@ -46,7 +46,7 @@ public class ErsDao {
 	public static Map<Integer, ReimbursementRequest> getReimbursementRequestsForUser(int userId) throws SQLException, IOException {
 		CallableStatement stmt = ErsDatabaseProcedures.selectUsersReimbursementRequests(userId);
 		stmt.execute();
-		ResultSet rs = (ResultSet) stmt.getObject(1);
+		ResultSet rs = (ResultSet) stmt.getObject(2);
 		return getMapForAllReimbursementRequests(rs, userId);
 	}
 	
