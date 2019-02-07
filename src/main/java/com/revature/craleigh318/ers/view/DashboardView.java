@@ -13,8 +13,8 @@ public class DashboardView {
 	private static final String EMPLOYEE_DASHBOARD = "<h1>Employee Dashboard</h1><h2>My Requests</h2>%s<h2>Request Reimbursement</h2>%s";
 	private static final String MANAGER_DASHBOARD = "<h1>Manager Dashboard</h1><h2>All Requests</h2>%s<h2>Register New Employee</h2>%s";
 	
-	public static String employeeDashboard() {
-		return String.format(EMPLOYEE_DASHBOARD, "", NewRequestView.createHtml());
+	public static String employeeDashboard(String reimbursementRequestsHtml, String newRequestHtml) {
+		return String.format(EMPLOYEE_DASHBOARD, reimbursementRequestsHtml, newRequestHtml);
 	}
 	
 	public static String managerDashboard(String reimbursementRequestsHtml, String employeeRegistrationHtml) {

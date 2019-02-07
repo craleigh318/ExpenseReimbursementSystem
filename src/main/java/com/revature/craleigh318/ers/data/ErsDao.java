@@ -3,9 +3,9 @@ package com.revature.craleigh318.ers.data;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.CallableStatement;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -15,6 +15,10 @@ public class ErsDao {
 
 	public static void registerUser(String username, String temporaryPassword) throws SQLException, IOException {
 		ErsDatabaseProcedures.insertEmployee(username, temporaryPassword).execute();
+	}
+	
+	public static void requestReimbursement(int userId, BigDecimal amount, Object requestDate, String description) throws SQLException, IOException {
+		ErsDatabaseProcedures.insertReimbursementRequest(userId, amount, requestDate, description);
 	}
 	
 	public static int selectUserId(String username) throws SQLException, IOException {

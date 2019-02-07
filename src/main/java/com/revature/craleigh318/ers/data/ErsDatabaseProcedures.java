@@ -1,6 +1,7 @@
 package com.revature.craleigh318.ers.data;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,6 +14,15 @@ class ErsDatabaseProcedures {
 		CallableStatement stmt = getConnection().prepareCall("{CALL PROC_INSERT_EMPLOYEE(?, ?)}");
 		stmt.setString(1, username);
 		stmt.setString(2, password);
+		return stmt;
+	}
+	
+	static CallableStatement insertReimbursementRequest(int userId, BigDecimal amount, Object requestDate, String description) throws SQLException, IOException {
+		CallableStatement stmt = getConnection().prepareCall("{CALL PROC_INSERT_REQUEST(?, ?, ?, ?)}");
+		stmt.setInt(1, userId);
+		stmt.setBigDecimal(2, amount);
+		stmt.setObject(3, requestDate);
+		stmt.setString(4, description);
 		return stmt;
 	}
 	

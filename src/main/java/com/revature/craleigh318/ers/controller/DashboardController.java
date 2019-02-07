@@ -35,7 +35,7 @@ public class DashboardController implements IErsViewController {
 				if (isManager) {
 					html = managerDashboard(req, resp);
 				} else {
-					html = employeeDashboard(req, resp);
+					html = employeeDashboard(req, resp, userId);
 				}
 			} catch (SQLException e) {
 				html = NO_USER_ID;
@@ -44,8 +44,9 @@ public class DashboardController implements IErsViewController {
 		ErsView.writeHtmlWithOuter(resp, html);
 	}
 	
-	private static String employeeDashboard(HttpServletRequest req, HttpServletResponse resp) {
-		return DashboardView.employeeDashboard();
+	private static String employeeDashboard(HttpServletRequest req, HttpServletResponse resp, int userId) throws ServletException, IOException {
+		String newRequestHtml = NewRequestController.getInstance().htmlFromRequest(req, resp, userId);
+		return DashboardView.employeeDashboard("", newRequestHtml);
 	}
 	
 	private static String managerDashboard(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
