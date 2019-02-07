@@ -5,7 +5,7 @@ import com.revature.craleigh318.ers.utils.FormResponse;
 
 public class EmployeeRegistrationView {
 	
-	private static final String BASE_HTML = "<form method=\"post\"><table><tr><td>Username:</td><td><input name=\""+AttributeNames.RGSTR_USERNAME+"\" type=\"text\" /></td></tr><tr><td>Temporary Password:</td><td><input name=\""+AttributeNames.RGSTR_PASSWORD+"\" type=\"password\" /></td></tr></table><input type=\"submit\" value=\"Register\" /></form>%s";
+	private static final String BASE_HTML = "<form method=\"post\"><table><tr><td>Username:</td><td><input name=\""+AttributeNames.RGSTR_USERNAME+"\" type=\"text\" /></td></tr><tr><td>Temporary Password:</td><td><input name=\""+AttributeNames.RGSTR_PASSWORD+"\" type=\"password\" /></td></tr></table><input type=\"submit\" name=\""+AttributeNames.BUTTON_REGISTER_EMPLOYEE+"\" value=\"Register\" /></form>%s";
 	private static final String SUCCESS_MSG = "<p>%s registered successfully!</p>";
 	private static final String FAILURE_MSG = "<p>User registration failed.</p>";
 	

@@ -21,7 +21,13 @@ public class EmployeeRegistrationController {
 	}
 	
 	public String htmlFromRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		FormResponse result = registerUser(req);
+		boolean buttonPressed = (req.getParameter(AttributeNames.BUTTON_REGISTER_EMPLOYEE) != null);
+		FormResponse result;
+		if (buttonPressed) {
+			result = registerUser(req);
+		} else {
+			result = new FormResponse(FormResponse.Code.NOT_SUBMITTED, null);
+		}
 		return EmployeeRegistrationView.createHtml(result);
 	}
 	
@@ -29,7 +35,7 @@ public class EmployeeRegistrationController {
 		String username = req.getParameter(AttributeNames.RGSTR_USERNAME);
 		String password = req.getParameter(AttributeNames.RGSTR_PASSWORD);
 		if ((username == null) && (password == null)) {
-			return new FormResponse(FormResponse.Code.NOT_SUBMITTED, null);
+			return new FormResponse(FormResponse.Code.FAILED, null);
 		}
 		try {
 			ErsDao.registerUser(username, password);
