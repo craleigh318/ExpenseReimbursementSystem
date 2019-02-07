@@ -8,9 +8,10 @@ import com.revature.craleigh318.ers.model.ReimbursementRequest;
 
 public class ReimbursementTableView {
 
-	private static final String TABLE_HEADERS = "<tr>%s<th>Amount ($)</th><th>Date</th><th>Description</th>%s</tr>";
 	private static final String TH_EMPLOYEE = "<th>Employee ID</th>";
-	private static final String TH_ACTION = "<th>Action</th>";
+	private static final String TABLE_HEADERS = "<tr>%s<th>Amount ($)</th><th>Date</th><th>Description</th><th>Status</th></tr>";
+	private static final String TABLE_HEADERS_EMPLOYEE = String.format(TABLE_HEADERS, "");
+	private static final String TABLE_HEADERS_MANAGER = String.format(TABLE_HEADERS, TH_EMPLOYEE);
 	private static final String TABLE_CELL = "<td>%s</td>";
 	private static final String TABLE_TEMPLATE = "<table>%s</table>";
 	private static final String ROW_TEMPLATE = "<tr>%s</tr>";
@@ -20,7 +21,13 @@ public class ReimbursementTableView {
 	//private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public static String createTable(Iterable<ReimbursementRequest> requests, boolean manager) {
-		StringBuilder tableBuilder = new StringBuilder();
+		String headers;
+		if (manager) {
+			headers = TABLE_HEADERS_MANAGER;
+		} else {
+			headers = TABLE_HEADERS_EMPLOYEE;
+		}
+		StringBuilder tableBuilder = new StringBuilder(headers);
 		for (ReimbursementRequest r : requests) {
 			String nextRow;
 			if (manager) {
