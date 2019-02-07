@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 
 import oracle.jdbc.OracleTypes;
@@ -17,11 +18,11 @@ class ErsDatabaseProcedures {
 		return stmt;
 	}
 	
-	static CallableStatement insertReimbursementRequest(int userId, BigDecimal amount, Object requestDate, String description) throws SQLException, IOException {
+	static CallableStatement insertReimbursementRequest(int userId, BigDecimal amount, Date requestDate, String description) throws SQLException, IOException {
 		CallableStatement stmt = getConnection().prepareCall("{CALL PROC_INSERT_REQUEST(?, ?, ?, ?)}");
 		stmt.setInt(1, userId);
 		stmt.setBigDecimal(2, amount);
-		stmt.setObject(3, requestDate);
+		stmt.setDate(3, requestDate);
 		stmt.setString(4, description);
 		return stmt;
 	}

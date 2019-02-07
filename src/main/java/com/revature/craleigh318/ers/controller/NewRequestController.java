@@ -37,7 +37,7 @@ public class NewRequestController {
 			String strAmount = req.getParameter(AttributeNames.NEW_AMOUNT);
 			BigDecimal amount = new BigDecimal(strAmount);
 			String strRequestDate = req.getParameter(AttributeNames.NEW_DATE);
-			Object requestDate = LocalDate.parse(strRequestDate);
+			LocalDate requestDate = LocalDate.parse(strRequestDate);
 			String description = req.getParameter(AttributeNames.NEW_DESCRIPTION);
 			ErsDao.requestReimbursement(userId, amount, requestDate, description);
 			return FormResponse.Code.SUCCEEDED;

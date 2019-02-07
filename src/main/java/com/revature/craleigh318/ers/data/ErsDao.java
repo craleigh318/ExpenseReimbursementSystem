@@ -6,6 +6,7 @@ import java.sql.CallableStatement;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -17,8 +18,9 @@ public class ErsDao {
 		ErsDatabaseProcedures.insertEmployee(username, temporaryPassword).execute();
 	}
 	
-	public static void requestReimbursement(int userId, BigDecimal amount, Object requestDate, String description) throws SQLException, IOException {
-		ErsDatabaseProcedures.insertReimbursementRequest(userId, amount, requestDate, description);
+	public static void requestReimbursement(int userId, BigDecimal amount, LocalDate requestDate, String description) throws SQLException, IOException {
+		Date sqlRequestDate = Date.valueOf(requestDate);
+		ErsDatabaseProcedures.insertReimbursementRequest(userId, amount, sqlRequestDate, description);
 	}
 	
 	public static int selectUserId(String username) throws SQLException, IOException {
