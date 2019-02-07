@@ -19,22 +19,15 @@ public class ReimbursementTableView {
 	
 	//private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	
-	public static String createEmployeeTable(Iterable<ReimbursementRequest> requests) {
+	public static String createTable(Iterable<ReimbursementRequest> requests, boolean manager) {
 		StringBuilder tableBuilder = new StringBuilder();
 		for (ReimbursementRequest r : requests) {
-			String nextRow = createEmployeeRow(r);
-			nextRow = formatRow(nextRow);
-			tableBuilder.append(nextRow);
-		}
-		String table = tableBuilder.toString();
-		table = formatTable(table);
-		return table;
-	}
-	
-	public static String createManagerTable(Iterable<ReimbursementRequest> requests) {
-		StringBuilder tableBuilder = new StringBuilder();
-		for (ReimbursementRequest r : requests) {
-			String nextRow = createManagerRow(r);
+			String nextRow;
+			if (manager) {
+				nextRow = createManagerRow(r);
+			} else {
+				nextRow = createEmployeeRow(r);
+			}
 			nextRow = formatRow(nextRow);
 			tableBuilder.append(nextRow);
 		}
