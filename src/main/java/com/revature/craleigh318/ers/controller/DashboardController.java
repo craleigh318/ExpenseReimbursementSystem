@@ -45,13 +45,15 @@ public class DashboardController implements IErsViewController {
 	}
 	
 	private static String employeeDashboard(HttpServletRequest req, HttpServletResponse resp, int userId) throws ServletException, IOException {
+		String reimbursementTableHtml = ReimbursementTableController.getInstance().htmlFromRequest(req, resp, userId);
 		String newRequestHtml = NewRequestController.getInstance().htmlFromRequest(req, resp, userId);
-		return DashboardView.employeeDashboard("", newRequestHtml);
+		return DashboardView.employeeDashboard(reimbursementTableHtml, newRequestHtml);
 	}
 	
 	private static String managerDashboard(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String reimbursementTableHtml = ReimbursementTableController.getInstance().htmlFromRequest(req, resp, -1);
 		String employeeRegistrationHtml = EmployeeRegistrationController.getInstance().htmlFromRequest(req, resp);
-		return DashboardView.managerDashboard("", employeeRegistrationHtml);
+		return DashboardView.managerDashboard(reimbursementTableHtml, employeeRegistrationHtml);
 	}
 	
 	
