@@ -8,6 +8,10 @@ import com.revature.craleigh318.ers.model.ReimbursementRequest;
 
 public class ReimbursementTableView {
 
+	private static final String APRV_NULL = "Pending";
+	private static final String APRV_TRUE = "Approved";
+	private static final String APRV_FALSE = "Denied";
+	private static final String BUTTONS_APRV = "<button type=\"submit\" value=\"Approve\" /><button type=\"submit\" value=\"Deny\" />";
 	private static final String TH_EMPLOYEE = "<th>Employee ID</th>";
 	private static final String TABLE_HEADERS = "<tr>%s<th>Amount</th><th>Date</th><th>Description</th><th>Status</th></tr>";
 	private static final String TABLE_HEADERS_EMPLOYEE = String.format(TABLE_HEADERS, "");
@@ -47,7 +51,7 @@ public class ReimbursementTableView {
 		return String.format(TABLE_TEMPLATE, table);
 	}
 	
-	private static String createEmployeeRow(ReimbursementRequest request) {
+	private static String createMinimalRow(ReimbursementRequest request) {
 		BigDecimal amount = request.getAmount();
 		String strAmount = NumberFormat.getCurrencyInstance().format(amount);
 		String tdAmount = String.format(TABLE_CELL, strAmount);
@@ -61,14 +65,42 @@ public class ReimbursementTableView {
 		return sb.toString();
 	}
 	
+	private static String createEmployeeRow(ReimbursementRequest request) {
+		String tdEmployee = createMinimalRow(request);
+		StringBuilder sb = new StringBuilder(tdEmployee);
+		Boolean approved = request.getApproved();
+		String approvalCell = createApprovalCell(approved, false);
+		sb.append(approvalCell);
+		return sb.toString();
+	}
+	
 	private static String createManagerRow(ReimbursementRequest request) {
 		int userId = request.getUserId();
 		String strUserId = Integer.toString(userId);
 		String tdUserId = String.format(TABLE_CELL, strUserId);
 		StringBuilder sb = new StringBuilder(tdUserId);
-		String tdEmployee = createEmployeeRow(request);
+		String tdEmployee = createMinimalRow(request);
 		sb.append(tdEmployee);
+		Boolean approved = request.getApproved();
+		String approvalCell = createApprovalCell(approved, true);
+		sb.append(approvalCell);
 		return sb.toString();
+	}
+	
+	private static String createApprovalCell(Boolean status, boolean manager) {
+		String contents;
+		if (status == null) {
+			if (manager) {
+				contents = BUTTONS_APRV;
+			} else {
+				contents = APRV_NULL;
+			}
+		} else if (status == true) {
+			contents = APRV_TRUE;
+		} else {
+			contents = APRV_FALSE;
+		}
+		return String.format(TABLE_CELL, contents);
 	}
 	
 	private ReimbursementTableView() { }
