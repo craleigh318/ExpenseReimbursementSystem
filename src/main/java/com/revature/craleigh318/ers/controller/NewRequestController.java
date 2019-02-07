@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.revature.craleigh318.ers.data.ErsDao;
 import com.revature.craleigh318.ers.utils.AttributeNames;
 import com.revature.craleigh318.ers.utils.FormResponse;
-import com.revature.craleigh318.ers.view.EmployeeRegistrationView;
+import com.revature.craleigh318.ers.view.NewRequestView;
 
 public class NewRequestController {
 	
@@ -23,17 +23,16 @@ public class NewRequestController {
 	
 	public String htmlFromRequest(HttpServletRequest req, HttpServletResponse resp, int userId) throws ServletException, IOException {
 		boolean buttonPressed = (req.getParameter(AttributeNames.BUTTON_REQUEST_REIMBURSEMENT) != null);
-		FormResponse result;
+		FormResponse.Code result;
 		if (buttonPressed) {
 			result = sendReimbursementRequest(req, userId);
 		} else {
-			result = new FormResponse(FormResponse.Code.NOT_SUBMITTED, null);
+			result = FormResponse.Code.NOT_SUBMITTED;
 		}
-		return EmployeeRegistrationView.createHtml(result);
+		return NewRequestView.createHtml(result);
 	}
 	
-	private FormResponse sendReimbursementRequest(HttpServletRequest req, int userId) {
-		FormResponse.Code responseCode;
+	private FormResponse.Code sendReimbursementRequest(HttpServletRequest req, int userId) {
 		try {
 			String strAmount = req.getParameter(AttributeNames.NEW_AMOUNT);
 			BigDecimal amount = new BigDecimal(strAmount);
@@ -41,11 +40,10 @@ public class NewRequestController {
 			Object requestDate = LocalDate.parse(strRequestDate);
 			String description = req.getParameter(AttributeNames.NEW_DESCRIPTION);
 			ErsDao.requestReimbursement(userId, amount, requestDate, description);
-			responseCode = FormResponse.Code.SUCCEEDED;
+			return FormResponse.Code.SUCCEEDED;
 		} catch (Exception e) {
-			responseCode = FormResponse.Code.FAILED;
+			return FormResponse.Code.FAILED;
 		}
-		return new FormResponse(responseCode, null);
 	}
 	
 	private NewRequestController() { }
