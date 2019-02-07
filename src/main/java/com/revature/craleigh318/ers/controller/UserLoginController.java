@@ -52,7 +52,7 @@ public class UserLoginController implements IErsViewController {
 			}
 			if (correctLogin) {
 				responseCode = FormResponse.Code.SUCCEEDED;
-				req.setAttribute(AttributeNames.USER_ID, userId);
+				req.getSession().setAttribute(AttributeNames.USER_ID, userId);
 			} else {
 				responseCode = FormResponse.Code.FAILED;
 			}

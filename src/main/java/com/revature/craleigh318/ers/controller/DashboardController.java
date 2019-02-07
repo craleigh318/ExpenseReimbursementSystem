@@ -24,7 +24,7 @@ public class DashboardController implements IErsViewController {
 	
 	@Override
 	public void doRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Object objUserId = req.getAttribute(AttributeNames.USER_ID);
+		Object objUserId = req.getSession().getAttribute(AttributeNames.USER_ID);
 		String html;
 		if ((objUserId == null) || !(objUserId instanceof Integer)) {
 			html = NO_USER_ID;
