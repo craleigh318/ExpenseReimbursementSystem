@@ -11,7 +11,7 @@ public class ReimbursementTableView {
 	private static final String APRV_NULL = "Pending";
 	private static final String APRV_TRUE = "Approved";
 	private static final String APRV_FALSE = "Denied";
-	private static final String BUTTONS_APRV = "<button type=\"submit\" value=\"Approve\" /><button type=\"submit\" value=\"Deny\" />";
+	private static final String BUTTONS_APRV = "<button type=\"submit\">Approve</button><button type=\"submit\">Deny</button>";
 	private static final String TH_EMPLOYEE = "<th>Employee ID</th>";
 	private static final String TABLE_HEADERS = "<tr>%s<th>Amount</th><th>Date</th><th>Description</th><th>Status</th></tr>";
 	private static final String TABLE_HEADERS_EMPLOYEE = String.format(TABLE_HEADERS, "");
