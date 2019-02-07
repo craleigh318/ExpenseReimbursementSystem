@@ -15,6 +15,7 @@ public class AttributeNames {
 	public static final String BUTTON_REQUEST_REIMBURSEMENT = "buttonRequestReimbursement";
 	public static final String BUTTON_APPROVE_REQUEST = "buttonApproveRequest%d";
 	public static final String BUTTON_DENY_REQUEST = "buttonDenyRequest%d";
+	public static final String BUTTON_LOGOUT = "buttonLogOut";
 
 	private AttributeNames() { }
 }
