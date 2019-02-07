@@ -20,7 +20,7 @@ public class ErsDao {
 	
 	public static void requestReimbursement(int userId, BigDecimal amount, LocalDate requestDate, String description) throws SQLException, IOException {
 		Date sqlRequestDate = Date.valueOf(requestDate);
-		ErsDatabaseProcedures.insertReimbursementRequest(userId, amount, sqlRequestDate, description);
+		ErsDatabaseProcedures.insertReimbursementRequest(userId, amount, sqlRequestDate, description).execute();
 	}
 	
 	public static int selectUserId(String username) throws SQLException, IOException {
