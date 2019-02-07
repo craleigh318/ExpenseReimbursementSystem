@@ -66,7 +66,8 @@ public class ReimbursementTableView {
 	
 	private static String createManagerRow(ReimbursementRequest request) {
 		int userId = request.getUserId();
-		String tdUserId = Integer.toString(userId);
+		String strUserId = Integer.toString(userId);
+		String tdUserId = String.format(TABLE_CELL, strUserId);
 		StringBuilder sb = new StringBuilder(tdUserId);
 		String tdEmployee = createEmployeeRow(request);
 		sb.append(tdEmployee);
