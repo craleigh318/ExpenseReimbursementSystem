@@ -3,6 +3,7 @@ package com.revature.craleigh318.ers.view;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Date;
+import java.util.Map;
 
 import com.revature.craleigh318.ers.model.ReimbursementRequest;
 import com.revature.craleigh318.ers.utils.AttributeNames;
@@ -21,7 +22,7 @@ public class ReimbursementTableView {
 	private static final String TABLE_TEMPLATE = "<table>%s</table>";
 	private static final String ROW_TEMPLATE = "<tr>%s</tr>";
 
-	public static String createTable(Iterable<ReimbursementRequest> requests, boolean manager) {
+	public static String createTable(Map<Integer, ReimbursementRequest> requestMap, boolean manager) {
 		String headers;
 		if (manager) {
 			headers = TABLE_HEADERS_MANAGER;
@@ -29,12 +30,14 @@ public class ReimbursementTableView {
 			headers = TABLE_HEADERS_EMPLOYEE;
 		}
 		StringBuilder tableBuilder = new StringBuilder(headers);
-		for (ReimbursementRequest r : requests) {
+		Iterable<Integer> requestKeys = requestMap.keySet();
+		for (Integer requestId : requestKeys) {
 			String nextRow;
+			ReimbursementRequest request = requestMap.get(requestId);
 			if (manager) {
-				nextRow = createManagerRow(r);
+				nextRow = createManagerRow(requestId, request);
 			} else {
-				nextRow = createEmployeeRow(r);
+				nextRow = createEmployeeRow(request);
 			}
 			nextRow = formatRow(nextRow);
 			tableBuilder.append(nextRow);
@@ -69,29 +72,28 @@ public class ReimbursementTableView {
 	private static String createEmployeeRow(ReimbursementRequest request) {
 		String tdEmployee = createMinimalRow(request);
 		StringBuilder sb = new StringBuilder(tdEmployee);
-		String approvalCell = createApprovalCell(request, false);
+		String approvalCell = createApprovalCell(-1, request, false);
 		sb.append(approvalCell);
 		return sb.toString();
 	}
 	
-	private static String createManagerRow(ReimbursementRequest request) {
+	private static String createManagerRow(Integer requestId, ReimbursementRequest request) {
 		int userId = request.getUserId();
 		String strUserId = Integer.toString(userId);
 		String tdUserId = String.format(TABLE_CELL, strUserId);
 		StringBuilder sb = new StringBuilder(tdUserId);
 		String tdEmployee = createMinimalRow(request);
 		sb.append(tdEmployee);
-		String approvalCell = createApprovalCell(request, true);
+		String approvalCell = createApprovalCell(requestId, request, true);
 		sb.append(approvalCell);
 		return sb.toString();
 	}
 	
-	private static String createApprovalCell(ReimbursementRequest request, boolean manager) {
+	private static String createApprovalCell(Integer requestId, ReimbursementRequest request, boolean manager) {
 		Boolean status = request.getApproved();
 		String contents;
 		if (status == null) {
 			if (manager) {
-				//int requestId = request.get
 				contents = createApproveDenyButtons(requestId);
 			} else {
 				contents = APRV_NULL;

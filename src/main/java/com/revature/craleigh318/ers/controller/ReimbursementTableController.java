@@ -23,7 +23,7 @@ public class ReimbursementTableController {
 	
 	public String htmlFromRequest(HttpServletRequest req, HttpServletResponse resp, int userId) {
 		//boolean buttonPressed = (req.getParameter(AttributeNames.BUTTON_REGISTER_EMPLOYEE) != null);
-		Iterable<ReimbursementRequest> reimbursementRequests;
+		Map<Integer, ReimbursementRequest> reimbursementRequests;
 		try {
 			reimbursementRequests = fetchRequests(userId);
 		} catch (SQLException | IOException e) {
@@ -33,14 +33,14 @@ public class ReimbursementTableController {
 		return ReimbursementTableView.createTable(reimbursementRequests, manager);
 	}
 	
-	private Iterable<ReimbursementRequest> fetchRequests(int userId) throws SQLException, IOException {
+	private Map<Integer, ReimbursementRequest> fetchRequests(int userId) throws SQLException, IOException {
 		Map<Integer, ReimbursementRequest> map;
 		if (userId < 0) {
 			map = ErsDao.getAllReimbursementRequests();
 		} else {
 			map = ErsDao.getReimbursementRequestsForUser(userId);
 		}
-		return map.values();
+		return map;
 	}
 	
 	private ReimbursementTableController() { }
