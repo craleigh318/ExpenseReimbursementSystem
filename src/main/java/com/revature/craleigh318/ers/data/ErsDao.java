@@ -83,17 +83,17 @@ public class ErsDao {
 			Date requestDate = resultSet.getDate(i++);
 			String description = resultSet.getString(i++);
 			Object objApproved = resultSet.getObject(i++);
-			Boolean approved = integerObjectToBoolean(objApproved);
+			Boolean approved = decimalObjectToBoolean(objApproved);
 			ReimbursementRequest reimbursementRequest = new ReimbursementRequest(userId, amount, requestDate, description, approved);
 			map.put(requestId, reimbursementRequest);
 		}
 		return map;
 	}
 	
-	private static Boolean integerObjectToBoolean(Object object) {
-		Integer bigInteger = (Integer) object;
-		if (bigInteger != null) {
-			return bigInteger != 0;
+	private static Boolean decimalObjectToBoolean(Object object) {
+		BigDecimal bigDecimal = (BigDecimal) object;
+		if (bigDecimal != null) {
+			return bigDecimal != BigDecimal.ZERO;
 		} else {
 			return null;
 		}
