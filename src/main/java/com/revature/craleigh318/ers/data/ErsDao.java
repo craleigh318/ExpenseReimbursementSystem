@@ -57,6 +57,17 @@ public class ErsDao {
 		return (intComparison != 0);
 	}
 	
+	public static void approveReimbursementRequest(int requestId, boolean approve) throws SQLException, IOException {
+		int intApprove;
+		if (approve) {
+			intApprove = 1;
+		} else {
+			intApprove = 0;
+		}
+		CallableStatement stmt = ErsDatabaseProcedures.updateRequestApproved(requestId, intApprove);
+		stmt.execute();
+	}
+	
 	private static Map<Integer, ReimbursementRequest> getMapForAllReimbursementRequests(ResultSet resultSet, int existingUserId) throws SQLException {
 		TreeMap<Integer, ReimbursementRequest> map = new TreeMap<>();
 		while (resultSet.next()) {

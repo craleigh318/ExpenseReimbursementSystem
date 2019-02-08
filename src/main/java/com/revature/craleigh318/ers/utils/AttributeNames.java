@@ -13,8 +13,10 @@ public class AttributeNames {
 	public static final String NEW_DESCRIPTION = "newRequestDescription";
 	public static final String BUTTON_REGISTER_EMPLOYEE = "buttonRegisterEmployee";
 	public static final String BUTTON_REQUEST_REIMBURSEMENT = "buttonRequestReimbursement";
-	public static final String BUTTON_APPROVE_REQUEST = "buttonApproveRequest%d";
-	public static final String BUTTON_DENY_REQUEST = "buttonDenyRequest%d";
+	public static final String APPROVE_REQUEST = "buttonApproveRequest";
+	public static final String BUTTON_APPROVE_REQUEST = APPROVE_REQUEST + "%d";
+	public static final String DENY_REQUEST = "buttonDenyRequest";
+	public static final String BUTTON_DENY_REQUEST = DENY_REQUEST + "%d";
 	public static final String BUTTON_LOGOUT = "buttonLogOut";
 
 	private AttributeNames() { }
