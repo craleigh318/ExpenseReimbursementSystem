@@ -70,7 +70,7 @@ class ErsDatabaseProcedures {
 	}
 	
 	static CallableStatement updateRequestApproved(int requestId, int approved) throws SQLException, IOException {
-		CallableStatement stmt = getConnection().prepareCall("{PROC_REQUESTS_UPDATE_APPROVED(?, ?)}");
+		CallableStatement stmt = getConnection().prepareCall("{CALL PROC_REQUESTS_UPDATE_APPROVED(?, ?)}");
 		stmt.setInt(1, requestId);
 		stmt.setInt(2, approved);
 		return stmt;

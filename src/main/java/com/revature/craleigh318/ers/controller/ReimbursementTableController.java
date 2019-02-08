@@ -49,29 +49,29 @@ public class ReimbursementTableController {
 	}
 	
 	private void checkButtonPress(HttpServletRequest servletRequest) {
-		Enumeration<String> attributeNames = servletRequest.getAttributeNames();
-		while (attributeNames.hasMoreElements()) {
-			String nextAttributeName = attributeNames.nextElement();
-			boolean isApproval = (nextAttributeName.startsWith(AttributeNames.APPROVE_REQUEST));
+		Enumeration<String> parameterNames = servletRequest.getParameterNames();
+		while (parameterNames.hasMoreElements()) {
+			String nextParameterName = parameterNames.nextElement();
+			boolean isApproval = (nextParameterName.startsWith(AttributeNames.APPROVE_REQUEST));
 			if (isApproval) {
-				onButtonApprove(nextAttributeName);
+				onButtonApprove(nextParameterName);
 				return;
 			}
-			boolean isDenial = (nextAttributeName.startsWith(AttributeNames.DENY_REQUEST));
+			boolean isDenial = (nextParameterName.startsWith(AttributeNames.DENY_REQUEST));
 			if (isDenial) {
-				onButtonDeny(nextAttributeName);
+				onButtonDeny(nextParameterName);
 				return;
 			}
 		}
 	}
 	
-	private int idFromAttributeName(String attributeName, int nameLength) {
-		String substring = attributeName.substring(nameLength);
+	private int idFromParameterName(String parameterName, int nameLength) {
+		String substring = parameterName.substring(nameLength);
 		return Integer.parseInt(substring);
 	}
 	
-	private void onButtonApprove(String attributeName) {
-		int reimbursementRequestId = idFromAttributeName(attributeName, AttributeNames.APPROVE_REQUEST.length());
+	private void onButtonApprove(String parameterName) {
+		int reimbursementRequestId = idFromParameterName(parameterName, AttributeNames.APPROVE_REQUEST.length());
 		try {
 			ErsDao.approveReimbursementRequest(reimbursementRequestId, true);
 		} catch (SQLException | IOException e) {
@@ -79,8 +79,8 @@ public class ReimbursementTableController {
 		}
 	}
 	
-	private void onButtonDeny(String attributeName) {
-		int reimbursementRequestId = idFromAttributeName(attributeName, AttributeNames.DENY_REQUEST.length());
+	private void onButtonDeny(String parameterName) {
+		int reimbursementRequestId = idFromParameterName(parameterName, AttributeNames.DENY_REQUEST.length());
 		try {
 			ErsDao.approveReimbursementRequest(reimbursementRequestId, false);
 		} catch (SQLException | IOException e) {
